@@ -47,7 +47,7 @@ class App extends Component {
 
   start_connection() {
     window.WebSocket = window.WebSocket || window.MozWebSocket;
-    var websocket_url = 'wss://heroku-kafka-platform-events.herokuapp.com';
+    var websocket_url = `wss://${window.location.hostname}`;
     var conn = new WebSocket(websocket_url);
     conn.onopen = function () {
       this.set_websocket_status('Connected');
