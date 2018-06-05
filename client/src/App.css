@@ -1,0 +1,75 @@
+.App {
+  text-align: center;
+  font-family:tahoma, sans-serif;
+  width: 100%;
+}
+
+h1 {
+  font-weight: normal;
+  font-size: 42px;
+}
+
+* {
+  font-family:tahoma;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+p {
+  line-height:18px;
+}
+
+div {
+  margin-top:10px;
+  width:800px;
+}
+
+table, th, td {
+  border: 1px solid black;
+  text-align: left;
+  padding: 0.5em;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+.connected {
+  background: green;
+  color: white;
+}
+
+.not-connected {
+  background: red;
+  color: white;
+}
+
+.status {
+  padding:5px;        
+  border-radius:5px;
+  overflow-y: scroll;
+  border:1px solid #CCC;
+}
+table tr {
+  counter-increment: rowNumber;
+}
+
+table tr td:first-child::before {
+  content: counter(rowNumber);
+  min-width: 1em;
+  margin-right: 0.5em;
+}
+
+.more {
+  font-size: 32px;
+  font-family: "Courier New", monospace;
+  border: 2px solid #000;
+  background-color: #fff;
+  padding: 10px 25px;
+}
+.more:hover {
+  background-color: #FDD836;
+}
+.more:active {
+  background-color: #FFEFA9;
+}

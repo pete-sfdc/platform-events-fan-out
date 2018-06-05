@@ -1,0 +1,21 @@
+{
+  "name": "heroku-kafka-platform-events-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "add": "^2.0.6",
+    "async": "^2.6.1",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "faye": "^1.2.4",
+    "morgan": "^1.9.0",
+    "nforce": "^1.10.0",
+    "no-kafka": "^3.2.9",
+    "ws": "^5.2.0"
+  },
+  "scripts": {
+    "start": "node ./server/server.js",
+    "heroku-postbuild": "cd client && yarn && yarn run build"
+  }
+}
