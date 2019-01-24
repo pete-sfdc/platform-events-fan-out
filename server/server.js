@@ -10,9 +10,6 @@ const app = express();
 // orchestrates the start of SFDC processes
 const sfdcInitUtils = require('./utils/sfdcInitUtils');
 
-// middleware
-const appRoutes = require('./routes/app.js');
-
 // resolve port
 const port = process.env.PORT || 5000;
 
@@ -25,6 +22,9 @@ app.use(logger('dev'));
 // parse JSON right away
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
+
+// middleware
+const appRoutes = require('./routes/app.js');
 
 // use middleware for routes
 app.use('/', appRoutes);
@@ -39,4 +39,5 @@ const server = require('http').createServer(app);
 // start the server
 server.listen(port);
 
+// spin up the websockets
 websocketService.init(server);

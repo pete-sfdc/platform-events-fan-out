@@ -100,10 +100,8 @@ class App extends Component {
                 <tr>
                   <th scope="col">#</th>
                   <th scope="col">Replay ID</th>
-                  <th scope="col">Opportunity ID</th>
-                  <th scope="col">Order ID</th>
-                  <th scope="col">Order Status</th>
-                  <th scope="col">Order Total</th>
+                  <th scope="col">Record ID</th>
+                  <th scope="col">Record Message</th>
                 </tr>
               </thead>
               <tbody>
@@ -111,10 +109,8 @@ class App extends Component {
                 <tr key={index}>
                   <td></td>
                   <td>{event.event.replayId}</td>
-                  <td>{event.payload.OpportunityID__c}</td>
-                  <td>{event.payload.OrderID__c}</td>
-                  <td>{event.payload.OrderStatus__c}</td>
-                  <td>{event.payload.OrderTotal__c}</td>
+                  <td>{event.payload.Record_ID__c}</td>
+                  <td>{event.payload.Record_Message__c}</td>
                 </tr>
               )}
               </tbody>

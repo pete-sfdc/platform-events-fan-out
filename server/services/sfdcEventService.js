@@ -22,9 +22,7 @@ const subscribe = (err, next) => {
 
     // subscribe to all configured events
     sfdcEventConfig.forEach(eventSubConfig => {
-
         console.log(`Platform Events: Subscribing to ${eventSubConfig.eventName}`);
-
         platformEventsClient.subscribe(
             `/event/${eventSubConfig.eventName}`,
             eventSubConfig.eventFxn
