@@ -13,5 +13,9 @@ async.waterfall([
     sfdcEventService.init(null, next);
   }
 ],function (err, result) {
-  console.log("Salesforce Initilization: COMPLETE");
+	if(err) {
+		console.log(`Salesforce Initilization: ERROR -> ${err}`);
+	} else {
+		console.log("Salesforce Initilization: COMPLETE");	
+	}
 });
