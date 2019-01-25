@@ -7,6 +7,14 @@ With events, developers can publish an event and walk away. If there are other s
 
 This project also includes Kafka to be able to scale to whatever size is necessary.
 
+## Environment Variables Required (config vars in Heroku)
+- SFDC_USERNAME: username of integration user
+- SFDC_PASSWORD: password for integration user (include security token if necessary)
+- CLIENT_KEY: client key for connected app
+- CLIENT_SECRET: client secret for connect app
+- REDIRECT_URL: this just has to match the one you entered into Salesforce
+- ENVIRONMENT: sandbox or production depending
+
 ## Build the project
 This project is still under development. This repo holds the Heroku side side of the build. Another repo will hold the Salesforce side.
 
