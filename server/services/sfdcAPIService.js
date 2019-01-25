@@ -1,7 +1,7 @@
 const nforce = require('nforce');
 
 const org = nforce.createConnection({
-    clientId: process.env.CLIENT_ID,
+    clientId: process.env.CLIENT_KEY,
     clientSecret: process.env.CLIENT_SECRET,
     redirectUri: process.env.REDIRECT_URL,
     environment: process.env.ENVIRONMENT,
