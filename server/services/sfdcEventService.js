@@ -9,7 +9,7 @@ const subscribe = (err, next) => {
 
     console.log("Platform Events: Subscribing...");
 
-    // create an instance of cometd
+    // create the subscription client using faye
     platformEventsClient = new faye.Client(
         `${sfdcAPIService.oauth.instance_url}/cometd/40.0/`
     );
