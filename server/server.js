@@ -5,9 +5,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const websocketService = require('./services/websocketService');
 
+// this will do route magic
 const app = express();
 
-// orchestrates the start of SFDC processes
+// establish connection to Salesforce and subscribe to event streams
 const sfdcInitUtils = require('./utils/sfdcInitUtils');
 
 // resolve port
@@ -23,7 +24,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
-// middleware
+// routing middleware
 const appRoutes = require('./routes/app.js');
 
 // use middleware for routes
@@ -37,6 +38,7 @@ app.get('*', (req, res) => {
 const server = require('http').createServer(app);
 
 // start the server
+// uses config var PORT
 server.listen(port);
 
 // spin up the websockets
