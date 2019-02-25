@@ -7,26 +7,28 @@ let platformEventsClient;
 
 const subscribe = (err, next) => {
 
-    console.log("Platform Events: Subscribing...");
+    console.log("Platform Events: Evaluating Subscriptions...");
 
     // create the subscription client using faye
     platformEventsClient = new faye.Client(
-        `${sfdcAPIService.oauth.instance_url}/cometd/40.0/`
+        `${sfdcAPIService.oauth.instance_url}/cometd/45.0/`
     );
 
     // authorization for platform events
     platformEventsClient.setHeader(
-        'Authorization',
+        "Authorization",
         `OAuth ${sfdcAPIService.oauth.access_token}`
     );
 
     // subscribe to all configured events
-    sfdcEventConfig.forEach(eventSubConfig => {
-        console.log(`Platform Events: Subscribing to ${eventSubConfig.eventName}`);
+    sfdcEventConfig.forEach(subscription => {
+        let routeVariable = subscription.eventName.indexOf("ChangeEvent") > -1 ? "/data/" : "/event/";
+        console.log(`Platform Events: Subscribing to ${subscription.eventName}`);
         platformEventsClient.subscribe(
-            `/event/${eventSubConfig.eventName}`,
+            `${routeVariable}${subscription.eventName}`,
             eventSubConfig.eventFxn
         );
+        
     });
 
     console.log("Platform Events: Subscribed");
@@ -41,7 +43,7 @@ module.exports = {
     // replay all messages from a specific replayID
     replayMessages: (req, res) => {
         // build this out
-        console.log('~ this has not been built out yet ~');
+        console.log("~ this has not been built out yet ~");
     },
     // publish a new platform event
     publishMessage: (eventType, message) => {
