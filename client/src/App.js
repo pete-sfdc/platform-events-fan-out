@@ -64,7 +64,7 @@ class App extends Component {
       setInterval(function() {
         console.log("stayin alive!");
         this.state.ws.send('{"ab":"cd"}');
-      },50000);
+      },45000);
     }.bind(this);
     this.state.ws.onerror = function (error) {
       this.websocket_error("ERROR!");
