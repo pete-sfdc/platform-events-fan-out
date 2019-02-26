@@ -53,7 +53,7 @@ class App extends Component {
     this.state.ws = new WebSocket(websocket_url);
     this.state.ws.onopen = function () {
       this.set_websocket_status('Connected');
-      this.send([
+      this.state.ws.send([
         {
           event_name: "ChangeEvents"
         },{
