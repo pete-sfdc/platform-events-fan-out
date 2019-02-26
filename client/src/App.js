@@ -9,7 +9,6 @@ class App extends Component {
       kafka_messages: [],
       platform_events: [],
       available_subscriptions: [],
-      ws: null,
       websocket_status: 'Connecting...'
     }
   }
@@ -50,17 +49,21 @@ class App extends Component {
   start_connection() {
     window.WebSocket = window.WebSocket || window.MozWebSocket;
     var websocket_url = `wss://${window.location.hostname}`;
-    this.state.ws = new WebSocket(websocket_url);
-    var ws = this.state.ws;
+    var ws = new WebSocket(websocket_url);
+    var sendPayload = true;
     ws.onopen = function () {
       this.set_websocket_status('Connected');
-      this.state.ws.send([
-        {
-          event_name: "ChangeEvents"
-        },{
-          event_name: "Example_Event__e"
-        }
-      ]);
+      if(sendPayload) {
+        ws.send([
+          {
+            event_name: "ChangeEvents"
+          },{
+            event_name: "Example_Event__e"
+          }
+        ]);
+        sendPayload = false;
+      }
+      
       console.log("Websocket: READY");
       setInterval(function() {
         console.log("stayin alive!");
