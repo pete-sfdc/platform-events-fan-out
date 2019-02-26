@@ -26,7 +26,7 @@ const subscribe = (err, next) => {
         console.log(`Platform Events: Subscribing to ${subscription.eventName}`);
         platformEventsClient.subscribe(
             `${routeVariable}${subscription.eventName}`,
-            eventSubConfig.eventFxn
+            subscription.eventFxn
         );
         
     });
