@@ -19,9 +19,7 @@ let startWebsocketServer = server => {
         CLIENTS.push(newClient);
         console.log(`client connected: ${CLIENTS.length} active clients`);
         ws.on("message", (message) => {
-            if(message) {
-                
-            }
+            console.log(message);
             newClient.switch = 1;
         });
         ws.on("close", (client) => {
