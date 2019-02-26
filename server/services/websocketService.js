@@ -20,7 +20,7 @@ let startWebsocketServer = server => {
         console.log(`client connected: ${CLIENTS.length} active clients`);
         ws.on("message", (message) => {
             console.log(JSON.stringify(message));
-            if("subs" in message) {
+            if(message["subs"]) {
                 newClient.subs = message.subs;
             }
         });
