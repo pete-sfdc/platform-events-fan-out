@@ -63,7 +63,7 @@ class App extends Component {
       console.log("Websocket: READY");
       setInterval(function() {
         console.log("stayin alive!");
-        conn.send('{"ab":"cd"}');
+        this.state.ws.send('{"ab":"cd"}');
       },50000);
     }.bind(this);
     this.state.ws.onerror = function (error) {
