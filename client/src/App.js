@@ -51,7 +51,8 @@ class App extends Component {
     window.WebSocket = window.WebSocket || window.MozWebSocket;
     var websocket_url = `wss://${window.location.hostname}`;
     this.state.ws = new WebSocket(websocket_url);
-    this.state.ws.onopen = function () {
+    var ws = this.state.ws;
+    ws.onopen = function () {
       this.set_websocket_status('Connected');
       this.state.ws.send([
         {
@@ -63,16 +64,16 @@ class App extends Component {
       console.log("Websocket: READY");
       setInterval(function() {
         console.log("stayin alive!");
-        this.state.ws.send('{"ab":"cd"}');
+        ws.send('{"ab":"cd"}');
       },45000);
     }.bind(this);
-    this.state.ws.onerror = function (error) {
+    ws.onerror = function (error) {
       this.websocket_error("ERROR!");
     }.bind(this);
-    this.state.ws.onclose = function() {
+    ws.onclose = function() {
       this.websocket_error("Connection Closed");
     }.bind(this);
-    this.state.ws.onmessage = function (message) {
+    ws.onmessage = function (message) {
       this.do_message(message);
     }.bind(this);
   }
