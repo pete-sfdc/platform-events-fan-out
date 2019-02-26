@@ -54,13 +54,13 @@ class App extends Component {
     ws.onopen = function () {
       this.set_websocket_status('Connected');
       if(sendPayload) {
-        ws.send([
+        ws.send({subs:[
           {
             event_name: "ChangeEvents"
           },{
             event_name: "Example_Event__e"
           }
-        ]);
+        ]});
         sendPayload = false;
       }
       

@@ -14,13 +14,15 @@ let startWebsocketServer = server => {
     wss.on("connection", (ws) => {
         let newClient = {
             ws: ws,
-            switch: 0
+            subs:[]
         };
         CLIENTS.push(newClient);
         console.log(`client connected: ${CLIENTS.length} active clients`);
         ws.on("message", (message) => {
             console.log(JSON.stringify(message));
-            newClient.switch = 1;
+            if("subs" in message) {
+                newClient.subs = message.subs;
+            }
         });
         ws.on("close", (client) => {
             console.log(`client disconnected: ${CLIENTS.length} active clients`);
@@ -40,7 +42,7 @@ module.exports = {
     broadcast:(message) => {
         console.log(`sending message to ${CLIENTS.length} client(s)`);
         CLIENTS.forEach(client => {
-            if(client.ws.readyState === ws.OPEN && client.switch === 1) {
+            if(client.ws.readyState === ws.OPEN) {
                 client.ws.send(message);
             }
         });
