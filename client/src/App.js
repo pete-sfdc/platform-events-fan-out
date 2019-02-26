@@ -8,6 +8,8 @@ class App extends Component {
     this.state = {
       kafka_messages: [],
       platform_events: [],
+      available_subscriptions: [],
+      ws: null,
       websocket_status: 'Connecting...'
     }
   }
@@ -48,22 +50,29 @@ class App extends Component {
   start_connection() {
     window.WebSocket = window.WebSocket || window.MozWebSocket;
     var websocket_url = `wss://${window.location.hostname}`;
-    var conn = new WebSocket(websocket_url);
-    conn.onopen = function () {
+    this.state.ws = new WebSocket(websocket_url);
+    this.state.ws.onopen = function () {
       this.set_websocket_status('Connected');
+      this.send([
+        {
+          event_name: "ChangeEvents"
+        },{
+          event_name: "Example_Event__e"
+        }
+      ]);
       console.log("Websocket: READY");
       setInterval(function() {
         console.log("stayin alive!");
         conn.send('{"ab":"cd"}');
       },50000);
     }.bind(this);
-    conn.onerror = function (error) {
+    this.state.ws.onerror = function (error) {
       this.websocket_error("ERROR!");
     }.bind(this);
-    conn.onclose = function() {
+    this.state.ws.onclose = function() {
       this.websocket_error("Connection Closed");
     }.bind(this);
-    conn.onmessage = function (message) {
+    this.state.ws.onmessage = function (message) {
       this.do_message(message);
     }.bind(this);
   }
