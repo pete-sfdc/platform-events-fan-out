@@ -5,7 +5,8 @@ const org = nforce.createConnection({
     clientSecret: process.env.CLIENT_SECRET,
     redirectUri: process.env.REDIRECT_URL,
     environment: process.env.ENVIRONMENT,
-    mode: 'single'
+    mode: 'single',
+    autoRefresh: true
 });
 
 const authObj = {
