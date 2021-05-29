@@ -12,7 +12,7 @@
     "morgan": "^1.9.0",
     "nforce": "^1.10.0",
     "no-kafka": "^3.2.9",
-    "ws": "^5.2.0"
+    "ws": "^7.4.6"
   },
   "scripts": {
     "start": "node ./server/server.js",
